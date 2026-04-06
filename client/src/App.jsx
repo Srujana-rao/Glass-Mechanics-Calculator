@@ -60,11 +60,14 @@ export default function App() {
           bde_kcal: Number(c.bde_kcal),
         })),
       };
-      const response = await fetch("/api/calculate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+const response = await fetch(
+  "https://glass-mechanics-calculator-server.vercel.app/api/calculate",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }
+);
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Calculation failed");
       setResult(data);
